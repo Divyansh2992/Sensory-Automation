@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback Form</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f0f0f0;
+            color: #333;
+        }
+        .header-content {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin-right: 10px;
+        }
+        .wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #f0f0f0;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h3 {
+            margin: 10px 0;
+        }
+        .rating {
+            display: flex;
+            justify-content: space-between;
+            max-width: 300px;
+            margin: 10px 0;
+        }
+        .rating input {
+            display: none;
+        }
+        .rating label {
+            font-size: 14px;
+            cursor: pointer;
+        }
+        .rating input:checked + label {
+            background-color: gold;
+            color: white;
+            padding: 5px;
+            border-radius: 50%;
+        }
+        .rating label:hover,
+        .rating label:hover ~ label {
+            background-color: lightgrey;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <a href="#"><img src="AP.png" alt="LOGO"></a>
+            </div>
+            <nav>
+                <ul>
+                    <li><h2><a href="#">Home</a></h2></li>
+                    <li><h2><a href="#">About</a></h2></li>
+                    <li><h2><a href="#">Contact</a></h2></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="wrapper">
+        <div class="container">
+            <form id="feedbackForm" action="/" method="POST">
+                <h3>VEG_KHICHADI</h3>
+                <input type="hidden" name="itemName[]" value="Veg_Khichadi">
+                <input type="number" name="batch[]" placeholder="Enter batch" title="Enter the batch number" required>
+
+                <div class="rating-section">
+                    <label>Appearance</label>
+                    <div class="rating" id="appearance_Veg_Khichadi"></div>
+                </div>
+                <div class="rating-section">
+                    <label>Flavor</label>
+                    <div class="rating" id="flavor_Veg_Khichadi"></div>
+                </div>
+                <div class="rating-section">
+                    <label>Taste</label>
+                    <div class="rating" id="taste_Veg_Khichadi"></div>
+                </div>
+                <div class="rating-section">
+                    <label>Cooked Properly</label>
+                    <div class="rating" id="cooked_properly_Veg_Khichadi"></div>
+                </div>
+
+                <h3>MIX_DAL(MIX_SABJI_WITH_DESI_CHANA)</h3>
+                <input type="hidden" name="itemName[]" value="Mix_Dal(Mix_Sabji_With_Desi_Chana)">
+                <input type="number" name="batch[]" placeholder="Enter batch" title="Enter the batch number" required>
+
+                <div class="rating-section">
+                    <label>Appearance</label>
+                    <div class="rating" id="appearance_Mix_Dal"></div>
+                </div>
+                <div class="rating-section">
+                    <label>Flavor</label>
+                    <div class="rating" id="flavor_Mix_Dal"></div>
+                </div>
+                <div class="rating-section">
+                    <label>Taste</label>
+                    <div class="rating" id="taste_Mix_Dal"></div>
+                </div>
+                <div class="rating-section">
+                    <label>Cooked Properly</label>
+                    <div class="rating" id="cooked_properly_Mix_Dal"></div>
+                </div>
+                <div class="rating-section">
+                    <label>Viscosity or Thickness</label>
+                    <div class="rating" id="viscosity_or_thickness_Mix_Dal"></div>
+                </div>
+
+                <h3>SWEET_CHURMA</h3>
+                <input type="hidden" name="itemName[]" value="Sweet_Churma">
+                <input type="number" name="batch[]" placeholder="Enter batch" title="Enter the batch number" required>
+
+                <div class="rating-section">
+                    <label>Appearance</label>
+                    <div class="rating" id="appearance_Sweet_Churma"></div>
+                </div>
+                <div class="rating-section">
+                    <label>Flavor</label>
+                    <div class="rating" id="flavor_Sweet_Churma"></div>
+                </div>
+                <div class="rating-section">
+                    <label>Taste</label>
+                    <div class="rating" id="taste_Sweet_Churma"></div>
+                </div>
+                <div class="rating-section">
+                    <label>Cooked Properly</label>
+                    <div class="rating" id="cooked_properly_Sweet_Churma"></div>
+                </div>
+
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section about">
+                <h3>About</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque imperdiet, nulla at placerat faucibus, urna libero vulputate erat, a ultricies ligula eros nec diam.</p>
+            </div>
+            <div class="footer-section links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Services</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section contact">
+                <h3>Contact Us</h3>
+                <p>Email: info@example.com</p>
+                <p>Phone: +123 456 7890</p>
+                <p>Address: 123, Main Street, Anytown, USA</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Your Website. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function generateRadioButtons(name) {
+            let radioButtons = '';
+            for (let i = 1; i <= 10; i++) {
+                radioButtons += `
+                    <input type="radio" id="${name}_${i}" name="${name}" value="${i}" required>
+                    <label for="${name}_${i}">${i}</label>
+                `;
+            }
+            return radioButtons;
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const items = ['Veg_Khichadi', 'Mix_Dal', 'Sweet_Churma'];
+            items.forEach(item => {
+                ['appearance', 'flavor', 'taste', 'cooked_properly', 'viscosity_or_thickness'].forEach(rating => {
+                    const ratingDiv = document.getElementById(`${rating}_${item}`);
+                    if (ratingDiv) {
+                        ratingDiv.innerHTML = generateRadioButtons(`${rating}_${item}`);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

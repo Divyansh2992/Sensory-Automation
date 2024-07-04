@@ -1,0 +1,217 @@
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    background: #f7f7f7;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Header Styles */
+header {
+    background: #0d6efd;
+    color: #fff;
+    padding: 15px 20px;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+header .logo img {
+    height: 60px; /* Adjust height according to your needs */
+    width: auto;  /* Maintain aspect ratio */
+    display: block; /* Ensures image displays as a block element */
+}
+
+header nav ul {
+    list-style: none;
+    display: flex;
+}
+
+header nav ul li {
+    margin-left: 20px;
+}
+
+header nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+header nav ul li a:hover {
+    color: #ffd700;
+}
+
+/* Wrapper and Container Styles */
+.wrapper {
+    flex: 1;
+    max-width: 600px; /* Adjusted width for the login form */
+    margin: 50px auto;
+    padding: 20px;
+}
+
+.container {
+    background: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Form Styles */
+form h2 {
+    color: #0d6efd;
+    margin-bottom: 20px;
+    font-size: 24px;
+    text-align: center;
+}
+
+form label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+form input[type="text"],
+form input[type="password"] {
+    width: calc(100% - 20px); /* Adjust width to account for padding */
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background: #f7f7f7;
+    color: #333;
+    transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+form input[type="text"]:focus,
+form input[type="password"]:focus {
+    background: #fff;
+    border-color: #0d6efd;
+    outline: none;
+}
+
+form input[type="text"]::placeholder,
+form input[type="password"]::placeholder {
+    color: #999;
+}
+
+form button {
+    width: 100%;
+    padding: 15px;
+    background: #0d6efd;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+    margin-top: 20px; /* Added margin for better spacing */
+}
+
+form button:hover {
+    background: #0056b3;
+    transform: scale(1.05);
+}
+
+/* Footer Styles */
+footer {
+    background: #0d6efd;
+    color: #fff;
+    padding: 20px 0;
+    width: 100%;
+    margin-top: auto;
+    background-image: url('/Users/sujalpanchal/Desktop/all about python/project2/public/footer_bg.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    flex-wrap: wrap;
+}
+
+.footer-section {
+    flex: 1;
+    padding: 10px;
+}
+
+.footer-section h3 {
+    margin-bottom: 10px;
+    color: #ffd700;
+}
+
+.footer-section ul {
+    list-style: none;
+}
+
+.footer-section ul li {
+    margin-bottom: 10px;
+}
+
+.footer-section ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.footer-section ul li a:hover {
+    color: #ffd700;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.7); /* Added transparency for better text readability */
+}
+
+.footer-bottom p {
+    margin: 0;
+    color: #fff;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .header-content, .footer-content {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    header nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    header nav ul li {
+        margin: 10px 0;
+    }
+
+    .footer-section {
+        padding: 10px;
+    }
+}

@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Dish</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Reset default margins and paddings */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body styles */
+body {
+  font-family: 'Roboto', sans-serif;
+  line-height: 1.6;
+  background-color: #f2f2f2;
+}
+
+/* Header styles */
+header {
+  background-color: #0d6efd;
+  color: #fff;
+  padding: 10px 0;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.logo img {
+  width: 80px; /* Adjust size as needed */
+}
+
+nav ul {
+  list-style-type: none;
+  display: flex;
+}
+
+nav ul li {
+  margin-right: 20px;
+}
+
+nav ul li a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+nav ul li a:hover {
+  text-decoration: underline;
+}
+
+/* Main content styles */
+form {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+select {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+button:hover {
+  background-color: #555;
+}
+
+/* Footer styles */
+footer {
+  background-color: #0d6efd;
+  color: #fff;
+  padding: 20px 0;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 0 20px;
+}
+
+.footer-section {
+  flex: 1 1 300px; /* Adjust width as needed */
+  margin-bottom: 20px;
+}
+
+.footer-section h3 {
+  color: #fff;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.footer-section p {
+  color: #ccc;
+}
+
+.footer-section ul {
+  list-style-type: none;
+}
+
+.footer-section ul li {
+  margin-bottom: 10px;
+}
+
+.footer-bottom {
+  background-color: #0d6efd;
+  padding: 10px 0;
+  text-align: center;
+}
+
+.footer-bottom p {
+  color: #ccc;
+  font-size: 14px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .header-content {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  nav ul {
+    margin-top: 10px;
+  }
+
+  .footer-content {
+    flex-direction: column;
+  }
+}
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <a href="#"><img src="AP.png" alt="LOGO"></a>
+            </div>
+            <nav>
+                <ul>
+                    <li><h2><a href="#">Home</a></h2></li>
+                    <li><h2><a href="#">About</a></h2></li>
+                    <li><h2><a href="#">Contact</a></h2></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+
+    <form action="/dishes" method="POST">
+        <select name="itemName"> <!-- Add name attribute to select element -->
+            <option value="dal_dhokali">Dal_Dhokali</option>
+            <option value="veg_pulav">Veg_Pulav</option>
+            <option value="sukhadi">Sukhadi</option>
+            <option value="sukhi_bhaji">Sukhi_Bhaji</option>
+            <option value="jeera_pulav">Jeera_Pulav</option>
+            <option value="roti">Roti</option>
+            <option value="roasted_desi_chana">Roasted_Desi_Chana</option>
+            <option value="roasted_desi_chana_chat">Roasted_Desi_Chana_Chat</option>
+            <option value="jeera_rice">Jeera_Rice</option>
+            <!-- <option value="Mix_Veg_with_Pulses">Mix_Veg_with_Pulses</option> -->
+            <option value="thepla">Thepla</option>
+            <option value="roasted_masala_sing">Roasted_Masala_Sing</option>
+            <!-- <option value="Plain_Dal">Plain_Dal</option> -->
+            <option value="sweet_churma">Sweet_Churma</option>
+            <option value="veg_khichadi">Veg_Khichadi</option>
+            <!-- <option value="Roasted_Chana_Chat">Roasted_Chana_Chat</option> -->
+            <option value="louki_chana_dal">Louki_Chana_Dal</option>
+            <option value="dal_fry">Dal_Fry</option>
+            <option value="rice">Rice</option>
+            <option value="mix_sabji(with_desi_chana)">Mix_Sabji(With_Desi_Chana)</option>
+            <option value="mix_dal(mix_sabji_with_desi_chana)">Mix_Dal(Mix_Sabji_With_Desi_Chana)</option>
+
+        </select>
+        <button type="submit">Submit</button>
+    </form>
+
+    
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section about">
+                <h3>About</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque imperdiet, nulla at placerat faucibus, urna libero vulputate erat, a ultricies ligula eros nec diam.</p>
+            </div>
+            <div class="footer-section links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Services</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section contact">
+                <h3>Contact Us</h3>
+                <p>Email: info@example.com</p>
+                <p>Phone: +123 456 7890</p>
+                <p>Address: 123, Main Street, Anytown, USA</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Your Website. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+</body>
+</html>
