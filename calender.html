@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Date and Time to Day Converter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+        #container {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h1>Date and Time to Day Converter</h1>
+        <label for="date">Enter Date:</label>
+        <input type="date" id="date">
+        <br><br>
+        <label for="time">Enter Time:</label>
+        <input type="time" id="time">
+        <br><br>
+        <button onclick="getDayOfWeek()">Get Day of the Week</button>
+        <br><br>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        function getDayOfWeek() {
+            var inputDate = document.getElementById('date').value;
+            var inputTime = document.getElementById('time').value;
+
+            var datetimeStr = inputDate + ' ' + inputTime;
+            var datetimeObj = new Date(datetimeStr);
+            var options = { weekday: 'long' };
+            var dayOfWeek = datetimeObj.toLocaleDateString('en-US', options);
+
+            document.getElementById('result').innerHTML = "The day on " + datetimeObj.toLocaleDateString() + " is " + dayOfWeek + ".";
+        }
+    </script>
+</body>
+</html>
