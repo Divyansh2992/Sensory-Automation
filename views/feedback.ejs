@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback for <%= itemName %></title>
+    <link href="style_result.css" rel="stylesheet">
+    <style>
+       /* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    background: #f7f7f7;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Header Styles */
+header {
+    background: #0d6efd; /* Dark background color */
+    color: #fff;
+    padding: 15px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px; /* Added padding to align with content */
+}
+
+.header-content .logo {
+    flex: 1; /* Occupy remaining space */
+}
+
+.header-content .logo img {
+    height: 50px; /* Adjusted logo height */
+    width: auto; /* Maintain aspect ratio */
+    display: block; /* Ensure it behaves as a block element */
+    max-width: 100%; /* Ensure image does not exceed container width */
+}
+
+header nav {
+    flex: 1; /* Occupy remaining space */
+    text-align: right; /* Align navigation to the right */
+}
+
+header nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: flex-end; /* Align items to the end of nav */
+    gap: 20px; /* Added gap between navigation items */
+}
+
+header nav ul li {
+    margin: 0;
+}
+
+header nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 10px 15px; /* Added padding for better touch target */
+    border-radius: 5px; /* Rounded corners */
+    transition: background-color 0.3s ease;
+}
+
+header nav ul li a:hover {
+    background-color: #70aae9; /* Hover background color */
+    color: #fff; /* Hover text color */
+}
+
+/* Wrapper and Container Styles */
+.wrapper {
+    flex: 1;
+    max-width: 1500px;
+    margin: 50px auto;
+    padding: 20px;
+}
+
+.container {
+    background: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Form Styles */
+form h3 {
+    color: #0d6efd;
+    margin-bottom: 10px;
+    font-size: 22px;
+}
+
+form input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background: #f7f7f7;
+    color: #333;
+    transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+form input:focus {
+    background: #fff;
+    border-color: #0d6efd;
+    outline: none;
+}
+
+form input::placeholder {
+    color: #999;
+}
+
+form button {
+    width: 100%;
+    padding: 15px;
+    background: #0d6efd;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+form button:hover {
+    background: #0056b3;
+    transform: scale(1.05);
+}
+
+/* Footer Styles */
+footer {
+    background: #0d6efd;
+    color: #fff;
+    padding: 40px 20px;
+    margin-top: 40px;
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.footer-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-section {
+    flex: 1 1 30%;
+    margin: 10px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.footer-section:hover {
+    transform: translateY(-10px);
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.footer-section h3 {
+    margin-bottom: 20px;
+    color: #ffd700;
+    border-bottom: 2px solid #ffd700;
+    padding-bottom: 10px;
+    display: inline-block;
+}
+
+.footer-section p,
+.footer-section ul {
+    margin-bottom: 20px;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-section ul li {
+    margin-bottom: 10px;
+}
+
+.footer-section ul li a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.2s ease-in-out;
+}
+
+.footer-section ul li a:hover {
+    color: #ffd700;
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 14px;
+    color: #ddd;
+}
+
+.footer-bottom p {
+    margin: 0;
+}
+
+.footer-bottom p a {
+    color: #ffd700;
+    text-decoration: none;
+    transition: color 0.2s ease-in-out;
+}
+
+.footer-bottom p a:hover {
+    color: #fff;
+}
+
+@media (max-width: 768px) {
+    .footer-section {
+        flex: 1 1 100%;
+        margin: 10px 0;
+    }
+}
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .header-content, .footer-content {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    header nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    header nav ul li {
+        margin: 10px 0;
+    }
+
+    .footer-section {
+        padding: 10px;
+    }
+}
+
+/* ...existing styles... */
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table th, table td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+table th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+}
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-content">
+           
+                <a href="#" class="logo"><img src="AP.png" alt="LOGO"></a>
+            
+            <nav>
+                <ul>
+                    <li><h2><a href="directed.html">Home</a></h2></li>
+                    <li><h2><a href="login.html">Login</a></h2>
+                    <li><h2><a href="about.html">About</a></h2></li>
+                    <li><h2><a href="contect.html">Contact</a></h2></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+
+
+
+    <h1>Feedback for <%= itemName %></h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Batch</th>
+                <th>Appearance</th>
+                <th>Flavor</th>
+                <th>Taste</th>
+                <th>Cooked Properly</th>
+                <th>Viscosity or Thickness</th>
+                <th>Total Score</th>
+                <th>Average</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% let totalScore = 0; %>
+            <% let totalAverage = 0; %>
+            <% feedbackData.forEach(row => { %>
+                <tr>
+                    <td><%= row.date %></td>
+                    <td><%= row.batch %></td>
+                    <td><%= row.appearance %></td>
+                    <td><%= row.flavor %></td>
+                    <td><%= row.taste %></td>
+                    <td><%= row.cooked_properly %></td>
+                    <td>
+                        <% if (row.Viscosity_or_Thickness !== undefined && row.Viscosity_or_Thickness !== null) { %>
+                            <%= row.Viscosity_or_Thickness %>
+                        <% } else { %>
+                            -
+                        <% } %>
+                    </td>
+                    <td><%= row.totalscore %></td>
+                    <td><%= row.average %></td>
+                </tr>
+                <% // Calculate totals %>
+                <% totalScore += row.totalscore; %>
+                <% totalAverage += row.average; %>
+            <% }); %>
+            <tr>
+                <td><strong>Total</strong></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><strong><%= totalScore %></strong></td>
+                <td><strong><%= (totalAverage / feedbackData.length).toFixed(2) %></strong></td> <!-- Calculate average of averages -->
+            </tr>
+        </tbody>
+    </table>
+
+
+    <!-- Container for pie chart -->
+    <div style="position: relative; width: 400px; height: 400px; margin: auto;">
+        <canvas id="myPieChart"></canvas>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section about">
+                <h3>About</h3>
+                <p>The Akshaya Patra Foundation is a non-profit organization that strives to eliminate classroom hunger by implementing the Mid-Day Meal Scheme in government and government-aided schools. We also aim to counter malnutrition and support the right to education of socio-economically disadvantaged children.</p>
+            </div>
+            <div class="footer-section links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="directed.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contect.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p>Opp. Ahmedabad Dental College,<br> 
+                    Bhadaj, Santej Road,<br> 
+                    Nr. Science City,<br>
+                    Ahmedabad, Gujarat 380060
+                </p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 <a href="https://www.akshayapatra.org">Akshay patras</a>. All rights reserved.</p>
+        </div>
+    </footer>
+   
+
+    <!-- Include Chart.js and ChartDataLabels -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+
+    <!-- Script to create and display a pie chart -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var ctx = document.getElementById('myPieChart').getContext('2d');
+            var data = {
+                labels: [<% feedbackData.forEach(item => { %>'<%= item.date %>', <% }); %>],
+                datasets: [{
+                    label: 'Average Scores',
+                    data: [<% feedbackData.forEach(item => { %><%= item.average.toFixed(2) %>, <% }); %>],
+                    backgroundColor: [
+                        'rgba(54, 162, 235, 0.6)',
+                        'rgba(255, 99, 132, 0.6)',
+                        'rgba(255, 206, 86, 0.6)',
+                        'rgba(75, 192, 192, 0.6)',
+                        'rgba(153, 102, 255, 0.6)',
+                        'rgba(255, 159, 64, 0.6)',
+                        'rgba(120, 199, 132, 0.6)',
+                        'rgba(54, 212, 235, 0.6)',
+                        'rgba(255, 206, 156, 0.6)',
+                        'rgba(75, 192, 232, 0.6)',
+                        'rgba(153, 202, 255, 0.6)',
+                        'rgba(255, 179, 64, 0.6)'
+                    ],
+                    borderWidth: 1
+                }]
+            };
+
+            var options = {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'right', // Adjust as needed
+                        labels: {
+                            fontColor: '#333',
+                            fontSize: 12,
+                            padding: 10,
+                            usePointStyle: true // Show color boxes instead of text
+                        }
+                    },
+                    tooltip: {
+                        enabled: true,
+                        callbacks: {
+                            label: function (tooltipItem) {
+                                var value = tooltipItem.raw || 0;
+                                return 'Average: ' + value.toFixed(2);
+                            }
+                        }
+                    },
+                    datalabels: {
+                        formatter: (value, ctx) => {
+                            return value.toFixed(2);
+                        },
+                        color: '#fff',
+                        backgroundColor: '#000',
+                        borderRadius: 3,
+                        font: {
+                            weight: 'bold'
+                        },
+                        padding: 6,
+                        display: 'auto' // Display average values directly on the pie chart slices
+                    }
+                }
+            };
+
+            var myPieChart = new Chart(ctx, {
+                type: 'pie',
+                data: data,
+                options: options,
+                plugins: [ChartDataLabels]
+            });
+        });
+    </script>
+</body>
+</html>

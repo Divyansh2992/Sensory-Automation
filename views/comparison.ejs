@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Updated Data</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Updated Data</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Item Name</th>
+                <th>Batch</th>
+                <th>Appearance</th>
+                <th>Flavor</th>
+                <th>Taste</th>
+                <th>Total Score</th>
+                <th>Average</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% let totalScore = 0; %>
+            <% let totalAverage = 0; %>
+            <% data.forEach(function(item) { %>
+                <tr>
+                    <td><%= item.itemName %></td>
+                    <td><%= item.batch %></td>
+                    <td><%= item.appearance %></td>
+                    <td><%= item.flavor %></td>
+                    <td><%= item.taste %></td>
+                    <td><%= item.totalscore %></td>
+                    <td><%= item.average %></td>
+                </tr>
+                <% // Calculate totals
+                totalScore += item.totalscore;
+                totalAverage += item.average; %>
+            <% }); %>
+            <% // Display totals row after iterating through data %>
+            <tr>
+                <td><strong>Total</strong></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><strong><%= totalScore %></strong></td>
+                <td><strong><%= totalAverage / data.length %></strong></td> <!-- Calculate average of averages -->
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

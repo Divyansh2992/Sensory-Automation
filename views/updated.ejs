@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Display Feedback Data</title>
+  <!-- Include Chart.js library -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- Include Chart.js datalabels plugin -->
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+  <style>
+            table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+
+        /* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    background: #f7f7f7;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+h1 {
+    color: #0d6efd;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 2rem;
+}
+
+/* Table Styles */
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 20px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+th, td {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 12px;
+    font-size: 1rem;
+}
+
+th {
+    background-color: #0d6efd;
+    color: #fff;
+    text-transform: uppercase;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Highlight for totals */
+tfoot td {
+    font-weight: bold;
+    background-color: #f2f2f2;
+}
+
+.Compare {
+    display: inline-block;
+    background-color: #ffc107; /* Yellow background */
+    color: #333; /* Dark text color */
+    padding: 12px 24px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    text-decoration: none; /* Remove underline from anchor tag */
+    transition: background-color 0.3s ease; /* Smooth transition for background color */
+}
+
+.Compare:hover {
+    background-color: #ffca2c; /* Darker yellow on hover */
+}
+
+.Compare a {
+    color: inherit; /* Inherit text color from parent */
+    text-decoration: none; /* Remove underline from anchor tag */
+}
+
+.Compare a:hover {
+    text-decoration: none; /* Remove underline on hover */
+    color: inherit; /* Inherit text color on hover */
+}
+
+canvas {
+      max-width: 400px;
+      margin: auto;
+      display: block;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+/* Responsive Design */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+
+    table, th, td {
+        font-size: 0.875rem;
+    }
+}
+
+   
+  </style>
+</head>
+<body>
+  <h1>Feedback Data for <%= inputDate %></h1>
+
+  <!-- Display fetched data in a table -->
+  <!-- <p>The date selected by the user is: <%= inputDate %></p> -->
+    <h1>Updated Data</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Item Name</th>
+                <th>Batch</th>
+                <th>Appearance</th>
+                <th>Flavor</th>
+                <th>Taste</th>
+                <th>cooked_properly</th>
+                <th>Viscosity_or_Thickness</th>
+                <th>Total Score</th>
+                <th>Average</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% let totalScore = 0; %>
+            <% let totalAverage = 0; %>
+            <% data.forEach(function(item) { %>
+                <tr>
+                    <td><%= item.itemName %></td>
+                    <td><%= item.batch %></td>
+                    <td><%= item.appearance %></td>
+                    <td><%= item.flavor %></td>
+                    <td><%= item.taste %></td>
+                    <td><%= item.cooked_properly %></td>
+                    <td>
+                        <% if (item.Viscosity_or_Thickness !== undefined && item.Viscosity_or_Thickness !== null) { %>
+                            <%= item.Viscosity_or_Thickness %>
+                        <% } else { %>
+                            -
+                        <% } %>
+                    </td>
+                    <td><%= item.totalscore %></td>
+                    <td><%= item.average %></td>
+                </tr>
+                <% // Calculate totals
+                totalScore += item.totalscore;
+                totalAverage += item.average; %>
+            <% }); %>
+            <% // Display totals row after iterating through data %>
+            <tr>
+                <td><strong>Total</strong></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><strong><%= totalScore %></strong></td>
+                <td><strong><%= totalAverage / data.length %></strong></td> <!-- Calculate average of averages -->
+            </tr>
+        </tbody>
+        
+    </table>
+    <button class="Compare"><a href="http://localhost:3000/dishes">Compare</a></button>
+
+  <!-- Container for pie chart -->
+  <div style="position: relative; width: 400px; height: 400px; margin: auto;">
+    <canvas id="myPieChart"></canvas>
+  </div>
+
+  <!-- Script to create and display a pie chart -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      var ctx = document.getElementById('myPieChart').getContext('2d');
+      var data = {
+        labels: [<% data.forEach(item => { %>'<%= item.itemName %>', <% }); %>],
+        datasets: [{
+          label: 'Average Scores',
+          data: [<% data.forEach(item => { %><%= item.average.toFixed(2) %>, <% }); %>],
+          backgroundColor: [
+            'rgba(54, 162, 235, 0.6)',
+            'rgba(255, 99, 132, 0.6)',
+            'rgba(255, 206, 86, 0.6)',
+            'rgba(75, 192, 192, 0.6)',
+            'rgba(153, 102, 255, 0.6)',
+            'rgba(255, 159, 64, 0.6)',
+            'rgba(120, 199, 132, 0.6)',
+            'rgba(54, 212, 235, 0.6)',
+            'rgba(255, 206, 156, 0.6)',
+            'rgba(75, 192, 232, 0.6)',
+            'rgba(153, 202, 255, 0.6)',
+            'rgba(255, 179, 64, 0.6)'
+          ],
+          borderWidth: 1
+        }]
+      };
+
+      var options = {
+        responsive: true,
+        plugins: {
+          legend: {
+            display: false
+          },
+          tooltip: {
+            enabled: false
+          },
+          datalabels: {
+            formatter: (value, ctx) => {
+              let label = ctx.chart.data.labels[ctx.dataIndex];
+              return label + ': ' + value.toFixed(2);
+            },
+            color: '#fff',
+            backgroundColor: '#000',
+            borderRadius: 3,
+            font: {
+              weight: 'bold'
+            },
+            padding: 6
+          }
+        }
+      };
+
+      var myPieChart = new Chart(ctx, {
+        type: 'pie',
+        data: data,
+        options: options,
+        plugins: [ChartDataLabels]
+      });
+    });
+  </script>
+</body>
+</html>
